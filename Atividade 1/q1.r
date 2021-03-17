@@ -17,7 +17,8 @@ FreqAc <- cumsum(Freq); FreqRel <- prop.table(Freq); FreqRelAc <- cumsum(FreqRel
 TabResul = cbind(Freq,FreqAc, FreqRel = round(FreqRel*100,digits = 2),
                  FreqRelAc= round(FreqRelAc*100,digits = 2));
 TabResul;
-h = hist(dados, breaks = limiteClass, ylab = "Frequências Absolutas",
+
+h = hist(dados, breaks = limiteClass, ylab = "Frequ?ncias Absolutas",
          xlab = "Range",
          freq = TRUE,
          labels = classes, main = "Histograma",
@@ -30,10 +31,18 @@ h = hist(dados, breaks = limiteClass, ylab = "Frequências Absolutas",
 #Media
 Media = mean(dados); Media;
 
-#Desvio Padrão
+#Desvio Padr?o
 sd(dados); dados;
 
 #Moda de Czuber
+
+TabResul;
+limiteClassModa = 55.55; freqModa = 18; freqAnt = 11; freqPost = 4;
+numerador = freqModa - freqAnt; numerador;
+denominador = (2 * freqModa - (freqAnt + freqPost)); denominador
+fracao = numerador/denominador; fracao
+Mo = limiteClassModa + fracao * AmpClasse; Mo
+  
 
 #Mediana
 Mediana = median(dados); Mediana;
@@ -62,5 +71,7 @@ K = numerador/denominador; K;
 #Letra C
 
 boxplot(dados, col = c("red", "yellow", "orange"),
-        main = "Boxplot da metragem diária da construção")
+        main = "Boxplot da metragem di?ria da constru??o")
+
+#Comentar o boxplot
 
