@@ -18,7 +18,7 @@ TabResul = cbind(Freq,FreqAc, FreqRel = round(FreqRel*100,digits = 2),
                  FreqRelAc= round(FreqRelAc*100,digits = 2));
 TabResul;
 
-h = hist(dados, breaks = limiteClass, ylab = "Frequ?ncias Absolutas",
+h = hist(dados, breaks = limiteClass, ylab = "Frequencias Absolutas",
          xlab = "Range",
          freq = TRUE,
          labels = classes, main = "Histograma",
@@ -31,8 +31,8 @@ h = hist(dados, breaks = limiteClass, ylab = "Frequ?ncias Absolutas",
 #Media
 Media = mean(dados); Media;
 
-#Desvio Padr?o
-sd(dados); dados;
+#Desvio Padrão
+sd(dados);
 
 #Moda de Czuber
 
@@ -71,7 +71,10 @@ K = numerador/denominador; K;
 #Letra C
 
 boxplot(dados, col = c("red", "yellow", "orange"),
-        main = "Boxplot da metragem di?ria da constru??o")
+        main = "Boxplot da metragem diária da construão")
 
 #Comentar o boxplot
-
+#Vemos que a distribuição assimetrica dos dados eh negativa, ou seja, temos uma
+#concentracao de dados maior na parte esquerda que da direita e o coeficiente de
+#assimetria de person eh negativo. Alem disso, percebemos a presença de um outlier
+#, onde o valor é 73 dos dados na tabela
