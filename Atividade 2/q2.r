@@ -1,7 +1,5 @@
 # lendo a base de dados
-install.packages("readxl")
-library(readxl)
-full_data <- read_excel("Base Covid Alagoas.xlsx")
+full_data <- read_xlsx("Base Covid Alagoas.xlsx")
 
 # vector com a coluna "Idade" transformada para inteiros
 por_idade = c()

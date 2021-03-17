@@ -11,8 +11,12 @@ AmpClasse <- Amplitude / NK ; AmpClasse <- 5.85; AmpClasse
 limiteClass <- c(38.00, 43.85, 49.70, 55.55, 61.40, 67.25, 73.00)
 classes<-c("38.00-43.85","43.85-49.70","49.70-55.55",
            "55.55-61.40","61.40-67.25", "67.25-73.00");
-Freq = table(cut(dados, breaks = limiteClass, right=FALSE, labels=classes))
-Freq;
+
+Freq = table(cut(dados, breaks = limiteClass, right=FALSE, labels=classes));
+FreqAc <- cumsum(Freq); FreqRel <- prop.table(Freq); FreqRelAc <- cumsum(FreqRel);
+TabResul = cbind(Freq,FreqAc, FreqRel = round(FreqRel*100,digits = 2),
+                 FreqRelAc= round(FreqRelAc*100,digits = 2));
+TabResul;
 h = hist(dados, breaks = limiteClass, ylab = "Frequências Absolutas",
          xlab = "Range",
          freq = TRUE,
