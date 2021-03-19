@@ -1,5 +1,6 @@
 # lendo a base de dados
-full_data <- read_xlsx("Base Covid Alagoas.xlsx")
+
+full_data <- as.data.frame(read.csv(file='BaseCovidAlagoas.csv', header = TRUE, sep=","))
 
 # vector com a coluna "Idade" transformada para inteiros
 por_idade = c()
@@ -10,7 +11,11 @@ por_idade <- as.numeric(gsub("([0-9]+).*$", "\\1", por_idade))
 por_mes <- table(full_data$Mes)
 
 #tabela de obitos por sexo
-por_sexo <- table(full_data$Sexo)
+full_data$Sexo[full_data$Sexo == "Feminino "] <- "Feminino"
+
+full_data$Sexo[full_data$Sexo == "Masculino "] <- "Masculino"
+
+por_sexo <- table(full_data$Sexo); por_sexo
 
 #1.1 Grafico de obitos por municipio (boxplot)
 boxplot(por_idade, data = data, col = c("red"))

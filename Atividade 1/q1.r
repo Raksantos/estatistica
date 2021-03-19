@@ -8,9 +8,9 @@ dados = sort(dados);
 Amplitude <- max (dados) - min(dados); Amplitude
 NK <-  round( 1 + 3.222 * log10(length(dados))) ; NK #Numero de classes
 AmpClasse <- Amplitude / NK ; AmpClasse <- 5.85; AmpClasse
-limiteClass <- c(38.00, 43.85, 49.70, 55.55, 61.40, 67.25, 73.00)
+limiteClass <- c(38.00, 43.85, 49.70, 55.55, 61.40, 67.25, 73.01)
 classes<-c("38.00-43.85","43.85-49.70","49.70-55.55",
-           "55.55-61.40","61.40-67.25", "67.25-73.00");
+           "55.55-61.40","61.40-67.25", "67.25-73.01");
 
 Freq = table(cut(dados, breaks = limiteClass, right=FALSE, labels=classes));
 FreqAc <- cumsum(Freq); FreqRel <- prop.table(Freq); FreqRelAc <- cumsum(FreqRel);
