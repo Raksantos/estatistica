@@ -65,4 +65,4 @@ for(i in 3:54){
      tendencia <- c(tendencia, "Estável")
    }
    
-}; medias; tendencia
+   }; medias; tendencia
