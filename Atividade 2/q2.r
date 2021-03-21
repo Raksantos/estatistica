@@ -1,5 +1,6 @@
 # lendo a base de dados
-
+install.packages("data.table")
+library(data.table)
 full_data <- as.data.frame(read.csv(file='BaseCovidAlagoas.csv', header = TRUE, sep=","))
 
 # vector com a coluna "Idade" transformada para inteiros
@@ -34,4 +35,34 @@ legend("topright", names(por_sexo), cex = 0.6, fill = rainbow(length(por_sexo)))
 # 4 Graficos Obitos por idade (histograma)
 hist(por_idade, col=rainbow(100), xlab="Idade", ylab="Obitos", main="Obitos por idade", breaks=25, xlim=c(1,100))
 
-#5 Essa questao eh doidera
+#5 Gráfico de óbitos por dia e média móvel simples de 7 em 7 dias
+
+full_data["Dia"] <- as.Date(sprintf("%d-%d-%d",full_data$Ano, full_data$Mes, full_data$Data));
+full_data["Semana"] <- week(sprintf("%d-%d-%d",full_data$Ano, full_data$Mes, full_data$Data));
+head(full_data)
+
+obitosSemana <- as.data.frame(cbind(full_data$Idade, full_data$Semana)); obitosSemana
+
+barplot(table(full_data$Semana), main = "Media movel de obitos", col = "blue",
+        ylim = c(0, 200), xlim = c(0, 55))
+freq = table(cut(full_data$Semana, breaks = full_data$Seq, right=FALSE));
+freq
+
+medias = c();
+tendencia = c();
+
+for(i in 3:54){
+   medias <- c(medias, mean(c(freq[i - 2], freq[i - 1])));
+   if(mean(c(freq[i - 2], freq[i - 1])) * 1.15 > freq[i]){
+     tendencia <- c(tendencia, "Queda")
+   }
+   
+   if(mean(c(freq[i - 2], freq[i - 1])) * 1.15 < freq[i]){
+     tendencia <- c(tendencia, "Cresceu")
+   }
+   
+   else{
+     tendencia <- c(tendencia, "Estável")
+   }
+   
+}; medias; tendencia
